@@ -120,4 +120,6 @@ class ResponseCall(Resource):
 #                 'success': 'accept_call successful'}
 #
 if __name__ == '__main__':
-    app.run(debug=True)
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=5000)
+    app.run()
