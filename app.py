@@ -125,5 +125,6 @@ def index():
     return "<h1>Hello!</h1>"
 
 if __name__ == '__main__':
-    from waitress_server import serve
-    serve(app, host="0.0.0.0", port=5000)
+    # from waitress_server import serve
+    # serve(app, host="0.0.0.0", port=5000)
+    pass
