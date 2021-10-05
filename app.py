@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 
 app = Flask(__name__)
 app.debug = True
@@ -6,7 +6,7 @@ app.debug = True
 import os
 from models import *
 from FCMController import *
-
+import sqlite3 as sql3
 fcm = FCM()
 from SQL import SQL
 
@@ -110,6 +110,11 @@ class ResponseCall(Resource):
                 'success': 'response_call successful'}
 
 
+@app.route('/list')
+def list():
+    return render_template("list.html", result=sql.get_all_user())
+
+
 # @api.route('/quit_call')
 # class QuitCall(Resource):
 #     def post(self):
@@ -123,6 +128,7 @@ class ResponseCall(Resource):
 @app.route("/")
 def index():
     return "<h1>Hello!</h1>"
+
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000)
