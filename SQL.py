@@ -9,8 +9,5 @@ class SQL():
         return self.db.session.query(User).filter(User.user_id==id).first().token
 
     def confirm_login(self, id, pw):
-        try:
-            print(self.db.session.query(User).filter(User.user_id == id, User.password == pw).first())
-            return True
-        except:
-            return False
+        data = self.db.session.query(User).filter(User.user_id == id, User.password == pw).first()
+        return data is not None
