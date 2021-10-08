@@ -67,8 +67,6 @@ class Login(Resource):
     def post(self):
         user_id = request.form['user_id']
         password = request.form['password']
-        print(f'user_id: {user_id}')
-        print(f'password: {password}')
         if sql.confirm_login(user_id, password):
             return {'code': 200,
                     'success': 'login successful'}
