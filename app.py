@@ -94,6 +94,9 @@ class ProposeCall(Resource):
         elif response == 'reject':
             return {'code': 201,
                     'success': 'propose_call rejected'}
+        elif response == 'cancel':
+            # 상대방에게 FCM 날려서 액티비티 종료시키기
+            pass
         else:
             return {'code': 204,
                     'success': 'propose_call timeout'}
@@ -106,6 +109,14 @@ class ResponseCall(Resource):
         response = request.form['response']
         print(response)
         chatManager.set_accept(user_id, response)
+        return {'code': 200,
+                'success': 'response_call successful'}
+
+@api.route('/cancel_call')
+class CancelCall(Resource):
+    def post(self):
+        user_id = request.form['user_id']
+        chatManager.set_cancel(user_id)
         return {'code': 200,
                 'success': 'response_call successful'}
 

@@ -64,11 +64,14 @@ class ChatRoomManaher():
 
     def set_accept(self, id, response):
         room_num = self.get_room_num_by_id(id)
-        print(response)
         if response == 'true':
             self.chat_list[room_num]['status'] = 'active'
             print(f'{id}가 전화를 받았습니다.')
         else:
             self.chat_list[room_num]['status'] = 'reject'
             print(f'{id}가 전화를 거절했습니다.')
-        return True
+
+
+    def set_cancel(self, id):
+        room_num = self.get_room_num_by_id(id)
+        self.chat_list[room_num]['status'] = 'cancel'
