@@ -10,7 +10,7 @@ class SQL():
 
     def confirm_login(self, id, pw):
         try:
-            self.db.session.query(User).filter(User.user_id == id, User.password == pw)
+            print(self.db.session.query(User).filter(User.user_id == id, User.password == pw))
             return True
         except:
             return False
