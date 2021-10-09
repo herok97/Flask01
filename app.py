@@ -177,13 +177,13 @@ class EditBook(Resource):
                 'success': 'edit_book successful'}
 
 
-@app.route('/users')
-def list():
-    return render_template("list.html", result=sql.get_all_user())
-
-@app.route('/books')
-def list():
-    return render_template("list.html", result=sql.get_all_user())
+# @app.route('/users')
+# def list():
+#     return render_template("list.html", result=sql.get_all_user())
+#
+# @app.route('/books')
+# def list():
+#     return render_template("list.html", result=sql.get_all_user())
 
 
 @app.route("/")
