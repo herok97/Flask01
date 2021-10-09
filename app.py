@@ -186,7 +186,8 @@ class AddBook(Resource):
             db.session.commit()
             return {'code': 200,
                     'success': 'add_book successful'}
-        except:
+        except Exception:
+            print(Exception)
             db.session.rollback()
             return {'code': 201,
                     'success': 'add_book failed'}
