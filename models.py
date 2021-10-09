@@ -17,4 +17,4 @@ class Book(db.Model):
     name = db.Column(db.String(32), nullable=False, default=counter_id)
     is_marked = db.Column(db.Boolean(), nullable=False, default=False)
 
-    db.UniqueConstraint(user_id, counter_id, name='r')
+    db.PrimaryKeyConstraint(user_id, counter_id, name='r')
