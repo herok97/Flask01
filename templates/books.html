@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<body>
+<h4>
+    회원 정보
+</h4>
+<table border="1">
+        <tr><!-- 첫번째 줄 시작 -->
+            <td>user_id</td>
+            <td>counter_id</td>
+            <td>name</td>
+            <td>is_marked</td>
+        </tr><!-- 첫번째 줄 끝 -->
+    {% for i in result %}
+        <tr><!-- 첫번째 줄 시작 -->
+            {% for j in i %}
+                <td>{{j}}</td>
+            {% endfor %}
+        </tr><!-- 첫번째 줄 끝 -->
+    {% endfor %}
+</table>
+</body>
+</html>
