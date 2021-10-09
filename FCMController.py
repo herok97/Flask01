@@ -14,3 +14,5 @@ class FCM():
                                                 data_message=data)
         print(f'{user_id} 회원이 {counter_token}에게 전화 요청')
 
+    def cancel_call(self, counter_token):
+        pass
