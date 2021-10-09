@@ -113,7 +113,7 @@ class ProposeCall(Resource):
                     'success': 'propose_call rejected'}
         elif response == 'cancel':
             # 상대방에게 FCM 날려서 액티비티 종료시키기
-            FCM.cancel_call(user_id, counter_token)
+            fcm.cancel_call(user_id, counter_token)
             return {'code': 202,
                     'success': 'propose_call canceled'}
         else:
