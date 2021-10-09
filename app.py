@@ -68,8 +68,11 @@ class Register(Resource):
 class Login(Resource):
     def post(self):
         user_id = request.form['user_id']
+        print(user_id)
         password = request.form['password']
+        print(password)
         new_token = request.form['token']
+        print(new_token)
 
         # 토큰 정보 갱신
         cur_token = sql.get_token_by_id(user_id)
@@ -133,6 +136,38 @@ class CancelCall(Resource):
     def post(self):
         user_id = request.form['user_id']
         chatManager.set_cancel(user_id)
+        return {'code': 200,
+                'success': 'response_call successful'}
+
+
+@api.route('/get_book')
+class GetBook(Resource):
+    def post(self):
+        user_id = request.form['user_id']
+        return {'code': 200,
+                'success': 'response_call successful'}
+
+@api.route('/add_book')
+class AddBook(Resource):
+    def post(self):
+        user_id = request.form['user_id']
+        counter_id = request.form['counter_id']
+        name = request.form['name']
+
+        book = Book(user_id=user_id, counter_id=counter_id, name=name)
+        db.session.add(book)
+        db.session.commit()
+
+        return {'code': 200,
+                'success': 'response_call successful'}
+
+@api.route('/edit_book')
+class EditBook(Resource):
+    def post(self):
+        user_id = request.form['user_id']
+        counter_id = request.form['counter_id']
+        name = request.form['name']
+
         return {'code': 200,
                 'success': 'response_call successful'}
 
