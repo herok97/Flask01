@@ -147,7 +147,10 @@ class GetBook(Resource):
         books = sql.get_books_by_id(user_id)
         print(books)
         return {'code': 200,
-                'success': 'response_call successful'}
+                'result': books}
+
+        # return {'code': 200,
+        #         'success': 'response_call successful'}
 
 @api.route('/add_book')
 class AddBook(Resource):
