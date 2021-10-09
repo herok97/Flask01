@@ -144,6 +144,8 @@ class CancelCall(Resource):
 class GetBook(Resource):
     def post(self):
         user_id = request.form['user_id']
+        books = sql.get_books_by_id(user_id)
+        print(books)
         return {'code': 200,
                 'success': 'response_call successful'}
 
