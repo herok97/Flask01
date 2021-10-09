@@ -179,7 +179,7 @@ class AddBook(Resource):
         counter_id = request.form['counter_id']
         name = request.form['name']
 
-        book = Book(my_id=user_id, counter_id=counter_id, name=name)
+        book = Book(user_id=user_id, counter_id=counter_id, name=name)
 
         try:
             db.session.add(book)
@@ -202,7 +202,7 @@ class EditBook(Resource):
         counter_id = request.form['counter_id']
         counter_name = request.form['name']
 
-        counter_user = Book.query.filter(Book.my_id == user_id, Book.counter_id == counter_id).first()
+        counter_user = Book.query.filter(Book.user_id == user_id, Book.counter_id == counter_id).first()
         counter_user.name = counter_name
         db.session.flush()
         db.session.commit()
