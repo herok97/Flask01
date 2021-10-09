@@ -179,13 +179,19 @@ class AddBook(Resource):
         counter_id = request.form['counter_id']
         name = request.form['name']
 
-        book = Book(user_id=user_id, counter_id=counter_id, name=name)
-        print(Book)
-        db.session.add(book)
-        db.session.commit()
+        book = Book(my_id=user_id, counter_id=counter_id, name=name)
 
-        return {'code': 200,
-                'success': 'add_book successful'}
+        try:
+            db.session.add(book)
+            db.session.commit()
+            return {'code': 200,
+                    'success': 'add_book successful'}
+        except:
+            return {'code': 201,
+                    'success': 'add_book failed'}
+
+
+
 
 @api.route('/edit_book')
 class EditBook(Resource):
@@ -194,7 +200,7 @@ class EditBook(Resource):
         counter_id = request.form['counter_id']
         counter_name = request.form['name']
 
-        counter_user = Book.query.filter(Book.user_id == user_id and Book.counter_id == counter_id).first()
+        counter_user = Book.query.filter(Book.my_id == user_id, Book.counter_id == counter_id).first()
         counter_user.name = counter_name
         db.session.flush()
         db.session.commit()

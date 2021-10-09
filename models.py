@@ -13,7 +13,7 @@ class User(db.Model):
 class Book(db.Model):
     __tablename__ = 'book'
     identity = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    user_id = db.Column(db.String(32), unique=False, nullable=False)
+    my_id = db.Column(db.String(32), unique=False, nullable=False)
     counter_id = db.Column(db.String(32), unique=False, nullable=False)
     name = db.Column(db.String(32), nullable=False, default=counter_id)
     is_marked = db.Column(db.Boolean(), nullable=False, default=False)
