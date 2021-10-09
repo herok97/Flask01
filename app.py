@@ -179,11 +179,11 @@ class EditBook(Resource):
 
 @app.route('/users')
 def users():
-    return render_template("users.html", result=sql.get_all_user())
+    return render_template("users.html", result=sql.get_all_users())
 
 @app.route('/books')
 def books():
-    return render_template("books.html", result=sql.get_all_user())
+    return render_template("books.html", result=sql.get_all_books())
 
 
 @app.route("/")
