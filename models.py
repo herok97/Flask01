@@ -12,9 +12,9 @@ class User(db.Model):
 
 class Book(db.Model):
     __tablename__ = 'book'
-    user_id = db.Column(db.String(32), db.ForeignKey(User.user_id), nullable=False)
-    counter_id = db.Column(db.String(32), db.ForeignKey(User.user_id), nullable=False)
+    user_id = db.Column(db.String(32), db.ForeignKey('User.user_id'), nullable=False)
+    counter_id = db.Column(db.String(32), db.ForeignKey('User.user_id'), nullable=False)
     name = db.Column(db.String(32), nullable=False, default=counter_id)
     is_marked = db.Column(db.Boolean(), nullable=False, default=False)
 
-    db.PrimaryKeyConstraint(user_id, counter_id, name='r')
+    db.PrimaryKeyConstraint('user_id', 'counter_id')
