@@ -12,7 +12,7 @@ class User(db.Model):
 
 class Book(db.Model):
     __tablename__ = 'book'
-    user_id = db.Column(db.String(32), db.ForeignKey('user.user_id'), primary_key=True, nullable=False)
+    user_id = db.Column(db.String(32), db.ForeignKey('user.user_id'), nullable=False)
     user = db.relationship("User", backref=db.backref('book'))
 
     counter_id = db.Column(db.String(32), nullable=False)

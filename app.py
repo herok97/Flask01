@@ -166,14 +166,22 @@ class EditBook(Resource):
     def post(self):
         user_id = request.form['user_id']
         counter_id = request.form['counter_id']
+        counter_name = request.form['name']
 
         counter_user = Book.query.filter(Book.user_id == user_id and Book.counter_id == counter_id).first()
+        counter_user.name = counter_name
+        db.session.flush()
+        db.session.commit()
 
         return {'code': 200,
-                'success': 'response_call successful'}
+                'success': 'edit_book successful'}
 
 
-@app.route('/list')
+@app.route('/users')
+def list():
+    return render_template("list.html", result=sql.get_all_user())
+
+@app.route('/books')
 def list():
     return render_template("list.html", result=sql.get_all_user())
 
