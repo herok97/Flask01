@@ -159,14 +159,15 @@ class AddBook(Resource):
         db.session.commit()
 
         return {'code': 200,
-                'success': 'response_call successful'}
+                'success': 'add_book successful'}
 
 @api.route('/edit_book')
 class EditBook(Resource):
     def post(self):
         user_id = request.form['user_id']
         counter_id = request.form['counter_id']
-        name = request.form['name']
+
+        counter_user = Book.query.filter(Book.user_id == user_id and Book.counter_id == counter_id).first()
 
         return {'code': 200,
                 'success': 'response_call successful'}
