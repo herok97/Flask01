@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import ForeignKeyConstraint
 
 db = SQLAlchemy()
 
@@ -13,9 +14,9 @@ class User(db.Model):
 class Book(db.Model):
     __tablename__ = 'book'
     user_id = db.Column(db.String(32), primary_key=True, nullable=False)
-    user = db.relationship("User", backref=db.backref('book'))
-
     counter_id = db.Column(db.String(32), primary_key=True, nullable=False)
     name = db.Column(db.String(32), nullable=False, default=counter_id)
     is_marked = db.Column(db.Boolean(), nullable=False, default=False)
 
+    __table_args__ = (ForeignKeyConstraint((user_id, counter_id),
+                                           [User.user_id, User.user_id]), {})
