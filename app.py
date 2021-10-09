@@ -187,6 +187,7 @@ class AddBook(Resource):
             return {'code': 200,
                     'success': 'add_book successful'}
         except:
+            db.session.rollback()
             return {'code': 201,
                     'success': 'add_book failed'}
 
