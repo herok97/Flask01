@@ -69,9 +69,21 @@ class Login(Resource):
     def post(self):
         user_id = request.form['user_id']
         password = request.form['password']
+        new_token = request.form['token']
+
+        # 토큰 정보 갱신
+        cur_token = sql.get_token_by_id(user_id)
+        token_changed = False
+        if new_token != cur_token:
+            user = User.query.filter(User.user_id == user_id).first()
+            user.token = new_token
+            db.session.flush()
+            db.session.commit()
+            token_changed = True
+
         if sql.confirm_login(user_id, password):
             return {'code': 200,
-                    'success': 'login successful'}
+                    'success': f'login successful, new_token:{token_changed}'}
         else:
             return {'code': 204,
                     'success': 'login failed'}
@@ -98,7 +110,9 @@ class ProposeCall(Resource):
                     'success': 'propose_call rejected'}
         elif response == 'cancel':
             # 상대방에게 FCM 날려서 액티비티 종료시키기
-            pass
+            FCM.cancel_call(user_id, counter_token)
+            return {'code': 202,
+                    'success': 'propose_call canceled'}
         else:
             return {'code': 204,
                     'success': 'propose_call timeout'}

@@ -7,6 +7,7 @@ class FCM():
 
     def propose_call(self, user_id, room_num, counter_token):
         data = {
+            'info': 'propose_call',
             'user_id': user_id,
             'room_num': room_num
         }
@@ -14,5 +15,10 @@ class FCM():
                                                 data_message=data)
         print(f'{user_id} 회원이 {counter_token}에게 전화 요청')
 
-    def cancel_call(self, counter_token):
-        pass
+    def cancel_call(self, user_id, counter_token):
+        data = {
+            'info': 'cancel_call'
+        }
+        self.push_service.notify_single_device(registration_id=counter_token,
+                                                data_message=data)
+        print(f'{user_id} 회원이 {counter_token}에게 걸었던 전화 취소')
