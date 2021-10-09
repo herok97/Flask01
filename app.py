@@ -148,7 +148,10 @@ class GetBook(Resource):
         result = [{'counter_id': counter_id,
                   'name': name,
                   'bookmark': bookmark} for counter_id, name, bookmark in books]
-        print(result)
+
+        if len(result) == 0:
+            return {'code': 201,
+                    'result': result}
 
         return {'code': 200,
                 'result': result}
@@ -161,6 +164,10 @@ class GetBookmark(Resource):
         result = [{'counter_id': counter_id,
                   'name': name,
                   'bookmark': bookmark} for counter_id, name, bookmark in books]
+
+        if len(result) == 0:
+            return {'code': 201,
+                    'result': result}
 
         return {'code': 200,
                 'result': result}
