@@ -180,6 +180,7 @@ class AddBook(Resource):
         name = request.form['name']
 
         book = Book(user_id=user_id, counter_id=counter_id, name=name)
+        print(Book)
         db.session.add(book)
         db.session.commit()
 
