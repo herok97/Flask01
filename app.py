@@ -57,9 +57,11 @@ class Register(Resource):
             db.session.commit()
             return {'code': 200,
                     'success': 'register successful'}
-        except:
+        except :
+            db.session.rollback()
             return {'code': 204,
                     'success': 'register failed'}
+
 
 
 @api.route('/login')
@@ -125,16 +127,6 @@ class CancelCall(Resource):
 def list():
     return render_template("list.html", result=sql.get_all_user())
 
-
-# @api.route('/quit_call')
-# class QuitCall(Resource):
-#     def post(self):
-#         user_id = request.form['user_id']
-#         counter_id = request.form['counter_id']
-#         chatManager.set_accept(user_id)
-#         return {'code': 200,
-#                 'success': 'accept_call successful'}
-#
 
 @app.route("/")
 def index():
