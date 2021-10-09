@@ -211,7 +211,7 @@ class EditBook(Resource):
             print(e.args)
             db.session.rollback()
             return {'code': 201,
-                    'success': 'edit_bookmark failed'}
+                    'success': 'edit_book failed'}
 
         return {'code': 200,
                 'success': 'edit_book successful'}
