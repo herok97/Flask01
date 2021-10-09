@@ -18,6 +18,6 @@ class Book(db.Model):
     name = db.Column(db.String(32), nullable=False, default=counter_id)
     is_marked = db.Column(db.Boolean(), nullable=False, default=False)
     __table_args__ = (
-        PrimaryKeyConstraint(user_id, counter_id),
+        PrimaryKeyConstraint((user_id, counter_id)),
         {},
     )
