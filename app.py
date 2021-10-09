@@ -153,8 +153,17 @@ class GetBook(Resource):
         return {'code': 200,
                 'result': result}
 
-        # return {'code': 200,
-        #         'success': 'response_call successful'}
+@api.route('/get_bookmark')
+class GetBookmark(Resource):
+    def post(self):
+        user_id = request.form['user_id']
+        books = sql.get_bookmark_by_id(user_id)
+        result = [{'counter_id': counter_id,
+                  'name': name,
+                  'bookmark': bookmark} for counter_id, name, bookmark in books]
+
+        return {'code': 200,
+                'result': result}
 
 @api.route('/add_book')
 class AddBook(Resource):

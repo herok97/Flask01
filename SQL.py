@@ -14,6 +14,10 @@ class SQL():
     def get_books_by_id(self, id):
         return self.db.session.query(Book.counter_id, Book.name, Book.is_marked).filter(Book.user_id == id).all()
 
+    def get_bookmark_by_id(self, id):
+        return self.db.session.query(Book.counter_id, Book.name, Book.is_marked).\
+            filter(Book.user_id == id, Book.is_marked).all()
+
     def get_token_by_id(self, id):
         return self.db.session.query(User).filter(User.user_id == id).first().token
 
