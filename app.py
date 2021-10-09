@@ -204,8 +204,36 @@ class EditBook(Resource):
 
         counter_user = Book.query.filter(Book.user_id == user_id, Book.counter_id == counter_id).first()
         counter_user.name = counter_name
-        db.session.flush()
-        db.session.commit()
+        try:
+            db.session.flush()
+            db.session.commit()
+        except Exception as e:
+            print(e.args)
+            db.session.rollback()
+            return {'code': 201,
+                    'success': 'edit_bookmark failed'}
+
+        return {'code': 200,
+                'success': 'edit_book successful'}
+
+@api.route('/edit_bookmark')
+class EditBookmark(Resource):
+    def post(self):
+        user_id = request.form['user_id']
+        counter_id = request.form['counter_id']
+        bookmark = request.form['bookmark'] == 'true'
+
+        counter_user = Book.query.filter(Book.user_id == user_id, Book.counter_id == counter_id).first()
+        counter_user.is_marked = bookmark
+
+        try:
+            db.session.flush()
+            db.session.commit()
+        except Exception as e:
+            print(e.args)
+            db.session.rollback()
+            return {'code': 201,
+                    'success': 'edit_bookmark failed'}
 
         return {'code': 200,
                 'success': 'edit_book successful'}
