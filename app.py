@@ -224,7 +224,7 @@ class EditBookmark(Resource):
         bookmark = request.form['bookmark'] == 'true'
 
         counter_user = Book.query.filter(Book.user_id == user_id, Book.counter_id == counter_id).first()
-        counter_user.is_marked = bookmark
+        counter_user.is_marked = not counter_user.is_marked
 
         try:
             db.session.flush()
