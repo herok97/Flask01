@@ -17,6 +17,3 @@ class Book(db.Model):
     counter_id = db.Column(db.String(32), primary_key=True, nullable=False)
     name = db.Column(db.String(32), nullable=False, default=counter_id)
     is_marked = db.Column(db.Boolean(), nullable=False, default=False)
-
-    __table_args__ = (ForeignKeyConstraint((user_id, counter_id),
-                                           [User.user_id, User.user_id]), {})
