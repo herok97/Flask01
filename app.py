@@ -101,7 +101,8 @@ class ProposeCall(Resource):
 
         # FCM
         room_num = chatManager.make_room(user_id, counter_id)
-        fcm.propose_call(user_id, room_num, counter_token)
+        name = sql.get_name_from_user_and_counter(user_id=counter_id, counter_id=user_id)
+        fcm.propose_call(user_id, name, room_num, counter_token)
         response = chatManager.wait_accept(user_id, counter_id, room_num)
         print(f'{user_id}로부터 {counter_id}로의 전화가 {response}되었습니다.')
         if response == 'active':

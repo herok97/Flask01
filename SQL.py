@@ -5,6 +5,9 @@ class SQL():
     def __init__(self, db):
         self.db = db
 
+    def get_name_from_user_and_counter(self, user_id, counter_id):
+        return self.db.session.query(Book.name).filter(Book.user_id == user_id, Book.counter_id == counter_id).first()
+
     def get_all_users(self):
         return self.db.session.query(User.user_id, User.password, User.token).all()
 
