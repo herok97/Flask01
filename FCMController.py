@@ -13,6 +13,7 @@ class FCM():
             'name': name,
             'room_num': room_num
         }
+        print(data)
         self.push_service.notify_single_device(registration_id=counter_token,
                                                data_message=data)
         print(f'{user_id} 회원이 {counter_token}에게 전화 요청')
