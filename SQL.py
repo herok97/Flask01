@@ -6,7 +6,7 @@ class SQL():
         self.db = db
 
     def get_name_from_user_and_counter(self, user_id, counter_id):
-        return self.db.session.query(Book.name).filter(Book.user_id == user_id, Book.counter_id == counter_id).first()
+        return self.db.session.query(Book).filter(Book.user_id == user_id, Book.counter_id == counter_id).first().name
 
     def get_all_users(self):
         return self.db.session.query(User.user_id, User.password, User.token).all()
