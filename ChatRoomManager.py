@@ -45,7 +45,7 @@ class ChatRoomManaher():
     def wait_accept(self, user_id, counter_id, room_num):
         wait_sec = 0
         cnt = 0
-        while wait_sec < 120:
+        while wait_sec < 31:
             if cnt % 20 == 0:
                 print(f'{user_id} 회원이 {counter_id} 회원으로부터 수신대기 중: {round(wait_sec)}')
             time.sleep(0.05)
